@@ -77,11 +77,12 @@ Authors
 -------
 
 * Daniel Reis
+* Nimarosa
 
 Contributors
 ------------
 
--  Daniel Reis <<dreis@opensourceintegrators.com>>
+- Daniel Reis <<dreis@opensourceintegrators.com>>
 
 Maintainers
 -----------
@@ -99,10 +100,13 @@ promote its widespread use.
 .. |maintainer-dreispt| image:: https://github.com/dreispt.png?size=40px
     :target: https://github.com/dreispt
     :alt: dreispt
+.. |maintainer-nimarosa| image:: https://github.com/nimarosa.png?size=40px
+    :target: https://github.com/nimarosa
+    :alt: nimarosa
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-dreispt| 
+|maintainer-dreispt| |maintainer-nimarosa| 
 
 This module is part of the `OCA/payroll <https://github.com/OCA/payroll/tree/18.0/payroll_rule_tag>`_ project on GitHub.
 
