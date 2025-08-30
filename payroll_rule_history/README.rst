@@ -74,7 +74,7 @@ Authors
 Contributors
 ------------
 
--  Daniel Reis <<dreis@opensourceintegrators.com>>
+- Daniel Reis <<dreis@opensourceintegrators.com>>
 
 Maintainers
 -----------

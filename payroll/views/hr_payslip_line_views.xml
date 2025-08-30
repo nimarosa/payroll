@@ -39,21 +39,23 @@
                     <group string="Calculations">
                         <field name="category_id" readonly="1" />
                         <field name="amount_select" readonly="1" />
-                        <field
-                            name="amount_fix"
-                            invisible="amount_select != 'fix'"
-                            readonly="1"
-                        />
-                        <field
-                            name="amount_percentage"
-                            invisible="amount_select != 'percentage'"
-                            readonly="1"
-                        />
                         <field name="sequence" readonly="1" />
                         <separator />
-                        <field name="quantity" readonly="1" />
-                        <field name="rate" readonly="1" />
-                        <field name="amount" readonly="1" />
+                        <field
+                            name="quantity"
+                            readonly="1"
+                            invisible="amount_select != 'fix'"
+                        />
+                        <field
+                            name="rate"
+                            readonly="1"
+                            invisible="amount_select != 'percentage'"
+                        />
+                        <field
+                            name="amount"
+                            readonly="1"
+                            invisible="amount_select != 'fix'"
+                        />
                         <field name="total" decoration-bf="1" readonly="1" />
                     </group>
                     <field name="note" />

@@ -85,17 +85,14 @@
                     <h1>
                         <field name="name" />
                     </h1>
-                    <label for="category_id" class="oe_edit_only" />
-                    <h2>
-                        <field
-                            name="category_id"
-                            required="require_code_and_category"
-                        />
-                    </h2>
                     <group name="principal">
                         <group>
                             <field name="code" required="require_code_and_category" />
                             <field name="sequence" />
+                            <field
+                                name="category_id"
+                                required="require_code_and_category"
+                            />
                             <field name="register_id" />
                             <field
                                 name="company_id"
