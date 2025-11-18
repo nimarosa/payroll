@@ -169,7 +169,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_form
 msgid ""
 "<code>contract:</code> contains current contract object data (hr.contract)"
-msgstr "<code>contract:</code> sözleşme nesnesi (hr.contract) verilerini içerir"
+msgstr ""
+"<code>contract:</code> sözleşme nesnesi (hr.contract) verilerini içerir"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_form
@@ -210,8 +211,8 @@ msgstr ""
 msgid ""
 "<code>payslips:</code> contains payslips data (Payslips - Browsable Object)"
 msgstr ""
-"<code>payslips:</code> ücret pusulaları verilerini içerir (Ücret Pusulaları -"
-" Görüntülenebilir Nesne)"
+"<code>payslips:</code> ücret pusulaları verilerini içerir (Ücret Pusulaları "
+"- Görüntülenebilir Nesne)"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_form
@@ -295,8 +296,8 @@ msgid ""
 "            "
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">"
-"\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;"
+"\">\n"
 "            Sayın <t t-out=\"object.employee_id.name\"/>,\n"
 "            <br/><br/>\n"
 "            <t t-out=\"object.payslip_run_id.name\"/> dönemine ait ücret "
@@ -923,6 +924,11 @@ msgid "Credit Note"
 msgstr "Alacak Notu"
 
 #. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Date"
 msgstr "Tarih"
@@ -1365,8 +1371,8 @@ msgid ""
 "SALEURO.amount * contract.wage*0.01."
 msgstr ""
 "Hesaplamada kullanılır. Örneğin, ürün başına baz maaşın %1'i oranında "
-"komisyon uygulanan bir satış kuralı şöyle tanımlanabilir: result = "
-"inputs.SALEURO.amount * contract.wage*0.01."
+"komisyon uygulanan bir satış kuralı şöyle tanımlanabilir: result = inputs."
+"SALEURO.amount * contract.wage*0.01."
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_contribution_register__write_uid
@@ -1591,8 +1597,8 @@ msgid ""
 "Only payslips in states verify or draft can be confirmed, the payslip %(nm)s "
 "is in %(st)s state"
 msgstr ""
-"Sadece doğrulama ve taslak durumundaki ücret pusulaları onaylanabilir, %(nm)"
-"s ücret pusulası %(st)s durumundadır"
+"Sadece doğrulama ve taslak durumundaki ücret pusulaları onaylanabilir, "
+"%(nm)s ücret pusulası %(st)s durumundadır"
 
 #. module: payroll
 #. odoo-python
@@ -2208,8 +2214,8 @@ msgid ""
 "variables which will store the data\n"
 "                                    for salary rule computation."
 msgstr ""
-"Hesaplamalar aşağıdaki nesne ve değişkenler kullanılarak gerçekleştirilmeli."
-"\n"
+"Hesaplamalar aşağıdaki nesne ve değişkenler kullanılarak "
+"gerçekleştirilmeli.\n"
 "                                    Sonra, maaş kural hesaplaması için "
 "kullanılacak verileri kaydeden\n"
 "                                    belirli hesap değişkenleri kullanmak "
