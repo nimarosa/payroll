@@ -223,14 +223,20 @@ class TestPayslipFlow(TestPayslipBase):
             len(contracts), 1, "There is one open contract for the employee"
         )
 
-        self.sally.contract_id.date_end = (Date.today() - timedelta(days=1)).strftime(
-            "%Y-%m-%d"
+        first_contract = self.sally.contract_id
+        end_date = first_contract.date_start
+        first_contract.write(
+            {
+                "date_end": end_date.strftime("%Y-%m-%d"),
+                "state": "close",
+            }
         )
+        second_start = end_date + timedelta(days=1)
         self.Contract.create(
             {
                 "name": "Second contract for Sally",
                 "employee_id": self.sally.id,
-                "date_start": Date.today().strftime("%Y-%m-%d"),
+                "date_start": second_start.strftime("%Y-%m-%d"),
                 "struct_id": self.sales_pay_structure.id,
                 "wage": 6500.00,
                 "state": "open",
