@@ -1871,6 +1871,12 @@ msgid "Rule Configuration"
 msgstr ""
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_salary_rule.py:0
+msgid "Rule computation field '%s' must be a float"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_category_view_form
 msgid "Salary Categories"
 msgstr ""
