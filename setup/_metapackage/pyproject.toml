@@ -1,7 +1,8 @@
 [project]
 name = "odoo-addons-oca-payroll"
-version = "18.0.20260408.1"
+version = "18.0.20260717.0"
 dependencies = [
+    "odoo-addon-hr_payroll_document==18.0.*",
     "odoo-addon-payroll==18.0.*",
     "odoo-addon-payroll_account==18.0.*",
     "odoo-addon-payroll_contract_advantages==18.0.*",
