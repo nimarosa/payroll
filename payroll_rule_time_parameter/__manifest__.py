@@ -11,12 +11,8 @@
         "base_time_parameter",
         "payroll",
     ],
-    "external_dependencies": {
-        "python": ["openupgradelib"],
-    },
     "license": "LGPL-3",
     "maintainers": ["appstogrow", "nimarosa"],
-    "pre_init_hook": "pre_init_hook",
-    "version": "14.0.2.0.2",
+    "version": "18.0.1.0.0",
     "website": "https://github.com/OCA/payroll",
 }
