@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======
 Payroll
 =======
@@ -17,7 +13,7 @@ Payroll
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fpayroll-lightgray.png?logo=github
@@ -38,10 +34,34 @@ This module is a backport from Odoo SA and as such, it is not included
 in the OCA CLA. That means we do not have a copy of the copyright on it
 like all other OCA modules.
 
+Default salary structure
+------------------------
+
+A default salary structure speeds up contract creation. Set it on the
+company as the general default, and on an employee only when that
+specific employee needs a different one; left empty on the employee, the
+company default applies.
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+**Default salary structure**
+
+Configure a structure to be proposed by default on new contracts:
+
+- Company: *Payroll ‣ Configuration ‣ Settings ‣ Contracts* — the
+  general default.
+- Employee: *Employee form ‣ Payroll tab* — only for employees needing a
+  different structure; leave empty otherwise.
+
+A new contract is pre-filled with the employee structure if defined,
+otherwise the company one. It stays editable and can be changed before
+saving.
 
 Bug Tracker
 ===========
@@ -70,6 +90,7 @@ Contributors
 - Nimarosa (Nicolas Rodriguez) <nicolarsande@gmail.com>
 - Henrik Norlin (@appstogrow)
 - Régis Pirard <regis.pirard@tincid.com>
+- Cyril VINH-TUNG <cyril@invitu.com>
 
 Maintainers
 -----------
