@@ -1,1 +1,2 @@
-- Daniel Reis \<\<<dreis@opensourceintegrators.com>\>\>
+- Daniel Reis \<<dreis@opensourceintegrators.com>\>
+- Nicolás Sande \<<nicolasrsande@gmail.com>\>

@@ -22,14 +22,26 @@ class HrPayslip(models.Model):
         # sum the amount for salary rule tags
         total = lines_dict[key]["total"]
         for tag in rule.tag_ids:
+            tag_code = tag.get_tag_code()
             localdict = self._sum_salary_rule_tag(
-                localdict, tag.name, total - previous_amount
+                localdict, tag_code, total - previous_amount
             )
         return localdict, lines_dict
 
-    def _sum_salary_rule_tag(self, localdict, tag_name, amount):
+    def _sum_salary_rule_tag(self, localdict, tag_code, amount):
+        """Sum the amount for a specific salary rule tag.
+
+        Args:
+            localdict: The local dictionary containing all payslip variables
+            tag_code: The code of the tag (already processed as valid Python identifier)
+            amount: The amount to add to the tag total
+
+        Returns:
+            Updated localdict
+        """
         self.ensure_one()
-        if tag_name:
-            code = tag_name.upper()
-            localdict["tags"].dict[code] = localdict["tags"].dict.get(code, 0) + amount
+        if tag_code:
+            localdict["tags"].dict[tag_code] = (
+                localdict["tags"].dict.get(tag_code, 0) + amount
+            )
         return localdict

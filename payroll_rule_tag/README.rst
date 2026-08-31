@@ -30,8 +30,15 @@ Payroll Rule Tag
 
 Assign tags to Salary Rules.
 
-These tags can be used to compute totals, and can work as a more flexble
-alternative to salary rule Categories.
+Tag totals are made available to salary rule computations, and work as a
+more flexible alternative to salary rule Categories: a rule belongs to a
+single Category, but it can carry any number of Tags, and tags are free
+to overlap.
+
+A typical use is grouping rules into calculation bases, such as
+"Taxable", "Social Security" or "Benefits", and then computing each base
+as the total of the rules carrying that tag, instead of repeating a list
+of rule codes in every formula.
 
 **Table of contents**
 
@@ -45,20 +52,55 @@ Salary rule Tags can be defined from the Payroll / Configuration menu,
 and are assigned to Salary Rules using the "Tags" field in the
 Computation form area.
 
+Each tag has:
+
+- a **Name**, used as the tag label,
+- an optional **Code**, the identifier salary rules use to read the tag
+  total. When left empty, the code is the name in uppercase, with
+  anything that is not a letter, a number or an underscore replaced by
+  an underscore (so "Taxable Income" gives ``TAXABLE_INCOME``),
+- a **Company**, since tags are company specific,
+- a **Sequence** and a **Color**, used for ordering and display only.
+
+Two tags of the same company cannot resolve to the same code, otherwise
+salary rules would not be able to tell their totals apart.
+
 Usage
 =====
 
-On Salary Rules form, one or more tags can be selected and assigne to
-the rule, on the "Tags" field.
+On the Salary Rules form, one or more tags can be selected and assigned
+to the rule, on the "Tags" field.
 
 In salary rules with Python code, totals for a tag can be accessed using
-the ``tags`` browseable collection with the uppercase tag name.
-
-Example:
+the ``tags`` browsable collection, with the tag code:
 
 ::
 
    result = tags.TAXABLE
+
+The code is the tag's Code field, or the tag name in uppercase when no
+code is set. An unknown code evaluates to ``0.0``, as for the other
+browsable collections.
+
+As with salary rule Categories, a tag total only aggregates the rules
+that were computed before the rule reading it, so the rule computing a
+tag total must have a higher sequence than the rules it is meant to sum
+up.
+
+Amounts are added to the tag with the same value used for the salary
+rule Categories, that is the line total (quantity x rate x amount), not
+the unit amount.
+
+Known issues / Roadmap
+======================
+
+- The ``name_company_unique`` SQL constraint compares the whole
+  translated value of the name, so it only rejects tags that are
+  duplicated in every language. Uniqueness that actually matters for
+  computations is enforced by the effective code constraint.
+- ``hr.payslip.line`` inherits the Tags field from ``hr.salary.rule``,
+  but no view exposes it on payslip lines yet. Reporting payslip lines
+  grouped by tag would be a natural next step.
 
 Bug Tracker
 ===========
@@ -77,11 +119,13 @@ Authors
 -------
 
 * Daniel Reis
+* Nimarosa
 
 Contributors
 ------------
 
--  Daniel Reis <<dreis@opensourceintegrators.com>>
+- Daniel Reis <dreis@opensourceintegrators.com>
+- Nicolás Sande <nicolasrsande@gmail.com>
 
 Maintainers
 -----------
@@ -99,10 +143,13 @@ promote its widespread use.
 .. |maintainer-dreispt| image:: https://github.com/dreispt.png?size=40px
     :target: https://github.com/dreispt
     :alt: dreispt
+.. |maintainer-nimarosa| image:: https://github.com/nimarosa.png?size=40px
+    :target: https://github.com/nimarosa
+    :alt: nimarosa
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-dreispt| 
+|maintainer-dreispt| |maintainer-nimarosa| 
 
 This module is part of the `OCA/payroll <https://github.com/OCA/payroll/tree/18.0/payroll_rule_tag>`_ project on GitHub.
 

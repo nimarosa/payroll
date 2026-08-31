@@ -6,12 +6,13 @@
     "category": "Payroll",
     "website": "https://github.com/OCA/payroll",
     "license": "LGPL-3",
-    "author": "Daniel Reis, Odoo Community Association (OCA)",
+    "author": "Daniel Reis, Nimarosa, Odoo Community Association (OCA)",
     "depends": ["payroll"],
     "data": [
+        "security/hr_payroll_security.xml",
         "security/ir.model.access.csv",
-        "views/hr_salary_rule.xml",
         "views/hr_salary_rule_tag.xml",
+        "views/hr_salary_rule.xml",
     ],
-    "maintainers": ["dreispt"],
+    "maintainers": ["dreispt", "nimarosa"],
 }
