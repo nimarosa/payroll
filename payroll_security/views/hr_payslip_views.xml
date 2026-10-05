@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    Each state button shows only to the level that may press it. The Python
+    guards are what enforce it; this only keeps the screen honest. Buttons
+    other modules add later under the same method names get the same groups
+    from HrPayslip._get_view (see models/hr_payslip.py).
+  -->
+    <record id="hr_payslip_view_form" model="ir.ui.view">
+        <field name="name">hr.payslip.form.payroll.security</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="payroll.hr_payslip_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//header/button[@name='action_payslip_done']"
+                position="attributes"
+            >
+                <attribute name="groups">payroll.group_payroll_user</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='refund_sheet']" position="attributes">
+                <attribute name="groups">payroll.group_payroll_user</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='compute_sheet']" position="attributes">
+                <attribute
+                    name="groups"
+                >payroll_security.group_payroll_preparer</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='action_payslip_draft']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >payroll_security.group_payroll_preparer</attribute>
+            </xpath>
+            <!-- Cancel a payslip not confirmed yet: preparer. -->
+            <xpath
+                expr="//header/button[@name='action_payslip_cancel'][1]"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >payroll_security.group_payroll_preparer</attribute>
+            </xpath>
+            <!-- Cancel a confirmed payslip: approver. -->
+            <xpath
+                expr="//header/button[@name='action_payslip_cancel'][2]"
+                position="attributes"
+            >
+                <attribute name="groups">payroll.group_payroll_user</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='onchange_employee']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >payroll_security.group_payroll_preparer</attribute>
+            </xpath>
+            <xpath expr="//field[@name='compute_date']" position="after">
+                <field name="computed_by_id" invisible="not computed_by_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The list's "Change state" action and the batch's "Generate payslips":
+       preparer at least; the target state is guarded in Python. -->
+    <record
+        id="payroll.action_hr_payslip_change_state_form"
+        model="ir.actions.act_window"
+    >
+        <field
+            name="groups_id"
+            eval="[Command.set([ref('payroll_security.group_payroll_preparer')])]"
+        />
+    </record>
+</odoo>

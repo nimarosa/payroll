@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    Row rules, one per group and operation. Group rules are OR-ed among the
+    groups a user holds, per operation, so:
+
+      read    Reader: every row (company scope comes from the global rules)
+      write   Preparer: rows not confirmed yet; Approver: every row
+      create  idem
+      unlink  idem
+
+    "Not confirmed" is draft/verify, plus cancel so a preparer can reset or
+    delete a rejected payslip. Leaving `done` needs the Approver, and that is
+    also guarded in Python: a write rule is evaluated on the rows BEFORE the
+    change, so it alone would let a preparer write state='done'.
+
+    OCA's department rule (payroll.hr_payroll_rule_officer) is neutralised by
+    hooks.py: it is a noupdate record of `payroll`. It is OR-ed with the
+    Approver rule below anyway, so it no longer narrows anything.
+  -->
+
+    <!-- hr.payslip ============================================================ -->
+    <record id="rule_payslip_reader" model="ir.rule">
+        <field name="name">Payslip: payroll reader reads all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="rule_payslip_preparer" model="ir.rule">
+        <field name="name">Payslip: preparer edits unconfirmed only</field>
+        <field name="model_id" ref="payroll.model_hr_payslip" />
+        <field
+            name="domain_force"
+        >[('state', 'in', ('draft', 'verify', 'cancel'))]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_preparer'))]" />
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="rule_payslip_approver" model="ir.rule">
+        <field name="name">Payslip: approver edits all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('payroll.group_payroll_user'))]" />
+    </record>
+
+    <!-- hr.payslip.line: no company of its own worth trusting (the one it
+       copies from hr.salary.rule is the computing user's), so both the
+       company scope and the state come from the payslip. ================== -->
+    <record id="rule_payslip_line_company" model="ir.rule">
+        <field name="name">Payslip line: multi-company</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_line" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|', ('slip_id.company_id', '=', False), ('slip_id.company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_payslip_line_reader" model="ir.rule">
+        <field name="name">Payslip line: payroll reader reads all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_line" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="rule_payslip_line_preparer" model="ir.rule">
+        <field name="name">Payslip line: preparer edits unconfirmed only</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_line" />
+        <field
+            name="domain_force"
+        >[('slip_id.state', 'in', ('draft', 'verify', 'cancel'))]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_preparer'))]" />
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="rule_payslip_line_approver" model="ir.rule">
+        <field name="name">Payslip line: approver edits all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_line" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('payroll.group_payroll_user'))]" />
+    </record>
+
+    <!-- hr.payslip.input / hr.payslip.worked_days ============================== -->
+    <record id="rule_payslip_input_reader" model="ir.rule">
+        <field name="name">Payslip input: payroll reader reads all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_input" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="rule_payslip_input_preparer" model="ir.rule">
+        <field name="name">Payslip input: preparer edits unconfirmed only</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_input" />
+        <field
+            name="domain_force"
+        >[('payslip_id.state', 'in', ('draft', 'verify', 'cancel'))]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_preparer'))]" />
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="rule_payslip_input_approver" model="ir.rule">
+        <field name="name">Payslip input: approver edits all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_input" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('payroll.group_payroll_user'))]" />
+    </record>
+    <record id="rule_payslip_worked_days_reader" model="ir.rule">
+        <field name="name">Payslip worked days: payroll reader reads all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_worked_days" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="rule_payslip_worked_days_preparer" model="ir.rule">
+        <field name="name">Payslip worked days: preparer edits unconfirmed only</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_worked_days" />
+        <field
+            name="domain_force"
+        >[('payslip_id.state', 'in', ('draft', 'verify', 'cancel'))]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_preparer'))]" />
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="rule_payslip_worked_days_approver" model="ir.rule">
+        <field name="name">Payslip worked days: approver edits all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_worked_days" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('payroll.group_payroll_user'))]" />
+    </record>
+
+    <!-- hr.payslip.run ========================================================= -->
+    <record id="rule_payslip_run_company" model="ir.rule">
+        <field name="name">Payslip batch: multi-company</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_run" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_payslip_run_reader" model="ir.rule">
+        <field name="name">Payslip batch: payroll reader reads all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_run" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="rule_payslip_run_preparer" model="ir.rule">
+        <field name="name">Payslip batch: preparer edits open batches only</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_run" />
+        <field name="domain_force">[('state', '=', 'draft')]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_preparer'))]" />
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="rule_payslip_run_approver" model="ir.rule">
+        <field name="name">Payslip batch: approver edits all</field>
+        <field name="model_id" ref="payroll.model_hr_payslip_run" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('payroll.group_payroll_user'))]" />
+    </record>
+
+    <!-- hr.contract: payroll reads every contract of its companies. Writing
+       stays with hr_contract's own groups. ============================= -->
+    <record id="rule_hr_contract_payroll_reader" model="ir.rule">
+        <field name="name">Contract: payroll reader reads all</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_payroll_reader'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+</odoo>

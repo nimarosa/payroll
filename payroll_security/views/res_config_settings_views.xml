@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- A block of its own, appended to the Payroll app: localizations
+       rearrange or replace the stock blocks, never one they do not know. -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.payroll.security</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="payroll.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='payroll']" position="inside">
+                <block title="Controls" id="payroll_security">
+                    <setting
+                        id="payroll_four_eyes_setting"
+                        string="Four eyes"
+                        help="Whoever computes a payslip cannot confirm it, nor close a batch holding payslips they computed. Applies to the current company."
+                    >
+                        <field name="payroll_four_eyes" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

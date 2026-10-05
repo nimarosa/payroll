@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- The trail of every structure change. -->
+    <record id="hr_payroll_structure_view_form" model="ir.ui.view">
+        <field name="name">hr.payroll.structure.form.payroll.security</field>
+        <field name="model">hr.payroll.structure</field>
+        <field name="inherit_id" ref="payroll.hr_payroll_structure_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="after">
+                <chatter />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,632 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payroll_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 22:30+0000\n"
+"PO-Revision-Date: 2026-10-05 22:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/common.py:0
+msgid "%(action)s requires the Payroll role %(role)s."
+msgstr "%(action)s requiere el rol %(role)s de Nómina."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Account trusted for payments"
+msgstr "Cuenta habilitada para pagos"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_needaction
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__active
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__active
+msgid "Active"
+msgstr "Activa"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/common.py:0
+msgid "Administrator"
+msgstr "Administrador"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__amount_select
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__amount_select
+msgid "Amount Type"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__condition_python
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__condition_python
+msgid ""
+"Applied this rule for calculation if condition is true. You can specify "
+"condition like basic > 1000."
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/common.py:0
+msgid "Approver"
+msgstr "Aprobador"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_attachment_count
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Bank"
+msgstr "Banco"
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Bank account %s changed:"
+msgstr "Cuenta bancaria %s modificada:"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Bank account added: %s."
+msgstr "Cuenta bancaria agregada: %s."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Bank account deleted: %s."
+msgstr "Cuenta bancaria eliminada: %s."
+
+#. module: payroll_security
+#: model:res.groups,comment:payroll_security.group_payroll_preparer
+msgid ""
+"Builds batches, loads inputs and computes payslips. Does not confirm: "
+"confirmed payslips and closed batches are out of reach."
+msgstr ""
+"Arma lotes, carga entradas y calcula recibos. No confirma: los recibos y "
+"lotes confirmados o cerrados quedan fuera de su alcance."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "By %s."
+msgstr "Por %s."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Cancelling confirmed payslips"
+msgstr "Cancelar recibos confirmados"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__category_id
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__category_id
+msgid "Category"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payslip_change_state
+msgid "Change state of a payslip"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+#: code:addons/payroll_security/wizards/hr_payslip_change_state.py:0
+msgid "Changing the state of payslips"
+msgstr "Cambiar el estado de recibos"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip_run.py:0
+msgid "Closing batches"
+msgstr "Cerrar lotes"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip_run.py:0
+msgid "Closing or reopening batches"
+msgstr "Cerrar o reabrir lotes"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__code
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__code
+msgid "Code"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip__computed_by_id
+msgid "Computed by"
+msgstr "Calculado por"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Computing payslips"
+msgstr "Calcular recibos"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__condition_select
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__condition_select
+msgid "Condition Based on"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Confirming or reopening payslips"
+msgstr "Confirmar o reabrir recibos"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Confirming payslips"
+msgstr "Confirmar recibos"
+
+#. module: payroll_security
+#: model_terms:ir.ui.view,arch_db:payroll_security.res_config_settings_view_form
+msgid "Controls"
+msgstr "Controles"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__amount_fix
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__amount_fix
+msgid "Fixed Amount"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_follower_ids
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_partner_ids
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__amount_percentage
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__amount_percentage
+msgid "For example, enter 50.0 to apply a percentage of 50%"
+msgstr ""
+
+#. module: payroll_security
+#: model_terms:ir.ui.view,arch_db:payroll_security.res_config_settings_view_form
+msgid "Four eyes"
+msgstr "Cuatro ojos"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid ""
+"Four eyes: nobody is recorded as having computed the payslip %(slip)s. "
+"Someone else has to compute it before you confirm it."
+msgstr ""
+"Cuatro ojos: el recibo %(slip)s no tiene registrado quién lo calculó. Otra "
+"persona tiene que calcularlo antes de que lo confirmes."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip_run.py:0
+msgid ""
+"Four eyes: you computed %(count)s payslip(s) of the batch %(run)s, so "
+"someone else has to close it."
+msgstr ""
+"Cuatro ojos: calculaste %(count)s recibo(s) del lote %(run)s, así que lo "
+"tiene que cerrar otra persona."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid ""
+"Four eyes: you computed the payslip %(slip)s, so someone else has to confirm"
+" it."
+msgstr ""
+"Cuatro ojos: calculaste el recibo %(slip)s, así que lo tiene que confirmar "
+"otra persona."
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payslip_employees
+msgid "Generate payslips for all selected employees"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/wizards/hr_payslip_employees.py:0
+msgid "Generating payslips"
+msgstr "Generar recibos"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__has_message
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Holder"
+msgstr "Titular"
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payroll_structure__message_needaction
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payroll_structure__message_has_error
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__active
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__active
+msgid ""
+"If the active field is set to false, it will allow you to hide the salary "
+"rule without removing it."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_is_follower
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: payroll_security
+#: model:res.groups,comment:payroll_security.group_payroll_payment
+msgid ""
+"Issues the payment orders and files of confirmed batches. Sees the net "
+"amounts; does not change payslips."
+msgstr ""
+"Genera las órdenes y archivos de pago de lotes confirmados. Ve los netos; no"
+" modifica recibos."
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__quantity
+msgid ""
+"It is used in computation for percentage and fixed amount. For e.g. A rule "
+"for Meal Voucher having fixed amount of 1€ per worked day can have its "
+"quantity defined in expression like worked_days.WORK100.number_of_days."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__condition_range_max
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__condition_range_max
+msgid "Maximum Range"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_has_error
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_ids
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__condition_range_min
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__condition_range_min
+msgid "Minimum Range"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__name
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__name
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__name
+msgid "Name"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "No"
+msgstr "No"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Number"
+msgstr "Número"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_needaction_counter
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__message_has_error_counter
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payroll_structure__message_needaction_counter
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payroll_structure__message_has_error_counter
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_res_company__payroll_four_eyes
+#: model:ir.model.fields,field_description:payroll_security.field_res_config_settings__payroll_four_eyes
+msgid "Payroll: four eyes"
+msgstr "Nómina: cuatro ojos"
+
+#. module: payroll_security
+#: model:res.groups,name:payroll_security.group_payroll_payment
+msgid "Payroll: payments"
+msgstr "Nómina: pagos"
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payslip
+msgid "Payslip"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payslip_line
+msgid "Payslip Line"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__amount_percentage
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__amount_percentage
+msgid "Percentage (%)"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__amount_percentage_base
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__amount_percentage_base
+msgid "Percentage based on"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/common.py:0
+#: model:res.groups,name:payroll_security.group_payroll_preparer
+msgid "Preparer"
+msgstr "Liquidador"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__amount_python_compute
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__amount_python_compute
+msgid "Python Code"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__condition_python
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__condition_python
+msgid "Python Condition"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payslip_line__condition_range
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__condition_range
+msgid "Range Based on"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/common.py:0
+msgid "Reader"
+msgstr "Lector"
+
+#. module: payroll_security
+#: model:res.groups,name:payroll_security.group_payroll_reader
+msgid "Reader (audit)"
+msgstr "Lector (auditoría)"
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__code
+msgid "Reference"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Refunding payslips"
+msgstr "Revertir recibos"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip_run.py:0
+msgid "Reopening batches"
+msgstr "Reabrir lotes"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Resetting payslips to draft"
+msgstr "Volver recibos a borrador"
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__rule_ids
+msgid "Salary Rules"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model,name:payroll_security.model_hr_payroll_structure
+msgid "Salary Structure"
+msgstr ""
+
+#. module: payroll_security
+#: model:res.groups,comment:payroll_security.group_payroll_reader
+msgid ""
+"Sees the payslips, batches and payroll reports of their companies. Changes "
+"nothing."
+msgstr ""
+"Ve recibos, lotes e informes de nómina de sus compañías. No modifica nada."
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__code
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__code
+msgid ""
+"The code of salary rules can be used as reference in computation of other "
+"rules. In that case, it is case sensitive."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__amount_select
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__amount_select
+msgid "The computation method for the rule amount."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__condition_range_max
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__condition_range_max
+msgid "The maximum amount, applied for this rule."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__condition_range_min
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__condition_range_min
+msgid "The minimum amount, applied for this rule."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__condition_range
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__condition_range
+msgid ""
+"This will be used to compute the % fields values; in general it is on basic,"
+" but you can also use categories code fields in lowercase as a variable "
+"names (hra, ma, lta, etc.) and the variable basic."
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,field_description:payroll_security.field_hr_payroll_structure__website_message_ids
+#: model:ir.model.fields,field_description:payroll_security.field_hr_salary_rule__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payroll_structure__website_message_ids
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/hr_payslip.py:0
+msgid "Who computed a payslip is recorded by the computation itself."
+msgstr "Quién calculó un recibo lo registra el cálculo."
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip__computed_by_id
+msgid ""
+"Who last computed this payslip. With the four-eyes option, that person "
+"cannot confirm it."
+msgstr ""
+"Quién calculó este recibo por última vez. Con la opción de cuatro ojos, esa "
+"persona no puede confirmarlo."
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_res_company__payroll_four_eyes
+#: model:ir.model.fields,help:payroll_security.field_res_config_settings__payroll_four_eyes
+msgid ""
+"Whoever computes a payslip cannot confirm it, nor close a batch holding "
+"payslips they computed."
+msgstr ""
+"Quien calcula un recibo no puede confirmarlo, ni cerrar un lote con recibos "
+"que calculó."
+
+#. module: payroll_security
+#: model_terms:ir.ui.view,arch_db:payroll_security.res_config_settings_view_form
+msgid ""
+"Whoever computes a payslip cannot confirm it, nor close a batch holding "
+"payslips they computed. Applies to the current company."
+msgstr ""
+"Quien calcula un recibo no puede confirmarlo ni cerrar un lote con recibos "
+"que calculó. Vale para la compañía actual."
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "Yes"
+msgstr "Sí"
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "not trusted for payments"
+msgstr "no habilitada para pagos"
+
+#. module: payroll_security
+#: model:ir.model.fields,help:payroll_security.field_hr_payslip_line__amount_percentage_base
+#: model:ir.model.fields,help:payroll_security.field_hr_salary_rule__amount_percentage_base
+msgid "result will be affected to a variable"
+msgstr ""
+
+#. module: payroll_security
+#. odoo-python
+#: code:addons/payroll_security/models/res_partner_bank.py:0
+msgid "trusted for payments"
+msgstr "habilitada para pagos"

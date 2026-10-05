@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    The app, payslips and batches are for every payroll level, the Reader
+    included. Configuration stays with the Administrator (payroll's own
+    groups=, untouched): the Reader reads structures and rules through the
+    payslips, not through the configuration menus.
+
+    `groups_id` is SET on the root and on Batches (they had none) and LINKED on
+    Payslips (it had the Officer). A later `-u payroll` only links its own
+    groups back (_tag_menuitem never unlinks), and a menu shows to anyone in
+    ANY of its groups, so the reader keeps them.
+  -->
+    <record id="payroll.payroll_menu_root" model="ir.ui.menu">
+        <field
+            name="groups_id"
+            eval="[Command.set([ref('payroll_security.group_payroll_reader')])]"
+        />
+    </record>
+    <record id="payroll.hr_payslip_menu" model="ir.ui.menu">
+        <field
+            name="groups_id"
+            eval="[Command.link(ref('payroll_security.group_payroll_reader'))]"
+        />
+    </record>
+    <record id="payroll.hr_payslip_run_menu" model="ir.ui.menu">
+        <field
+            name="groups_id"
+            eval="[Command.set([ref('payroll_security.group_payroll_reader')])]"
+        />
+    </record>
+</odoo>

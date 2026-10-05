@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_payslip_run_view_form" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.payroll.security</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="payroll.hr_payslip_run_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//header/button[@name='close_payslip_run']"
+                position="attributes"
+            >
+                <attribute name="groups">payroll.group_payroll_user</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='draft_payslip_run']"
+                position="attributes"
+            >
+                <attribute name="groups">payroll.group_payroll_user</attribute>
+            </xpath>
+            <xpath
+                expr="//header/button[@name='%(payroll.action_hr_payslip_by_employees)d']"
+                position="attributes"
+            >
+                <attribute
+                    name="groups"
+                >payroll_security.group_payroll_preparer</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="payroll.action_hr_payslip_by_employees" model="ir.actions.act_window">
+        <field
+            name="groups_id"
+            eval="[Command.set([ref('payroll_security.group_payroll_preparer')])]"
+        />
+    </record>
+</odoo>
