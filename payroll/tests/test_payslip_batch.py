@@ -320,3 +320,32 @@ class TestPayslipBatchViews(TestPayslipBatchCommon):
         self.assertEqual(self._visible_primaries(self.run), ["close_payslip_run"])
         self.run.close_payslip_run()
         self.assertEqual(self._visible_primaries(self.run), [])
+
+    def test_payslip_highlights_one_button_per_state(self):
+        slip = self._draft_slip(self.richard_contract)
+        expected = {
+            ("draft", False): ["compute_sheet"],
+            ("draft", True): ["compute_sheet"],
+            ("verify", False): ["compute_sheet"],
+            ("verify", True): ["action_payslip_done"],
+            ("done", True): [],
+            ("cancel", True): [],
+        }
+        for (state, has_lines), names in expected.items():
+            with self.subTest(state=state, has_lines=has_lines):
+                self.assertEqual(
+                    self._visible_primaries(
+                        slip, state=state, line_ids=[1] if has_lines else []
+                    ),
+                    names,
+                )
+
+    def test_payslip_leads_with_the_computation(self):
+        arch = etree.fromstring(
+            self.env["hr.payslip"].get_view(view_type="form")["arch"]
+        )
+        pages = [page.get("name") for page in arch.xpath("//notebook/page")]
+        self.assertEqual(pages[0], "computation")
+        self.assertIsNotNone(
+            arch.find(".//group[@name='right']/field[@name='payslip_run_id']")
+        )
