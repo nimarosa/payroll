@@ -8,3 +8,4 @@ from . import test_hr_payroll_cancel
 from . import test_hr_payslip_change_state
 from . import test_default_payroll_structure
 from . import test_formula_help
+from . import test_payslip_batch
