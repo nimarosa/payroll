@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    The salary journal, inside `payroll`'s own Accounting block (id
+    `payroll_accountant`, next to `module_payroll_account`), on the Payroll
+    settings page. `hr.payslip.run`'s "no journal" error names this exact
+    path. Targeting the block by id means that wherever a localization
+    repositions the block, this setting rides along inside it.
+  -->
+    <record
+        id="res_config_settings_view_form_payroll_salary_journal"
+        model="ir.ui.view"
+    >
+        <field name="name">res.config.settings.form.payroll.salary.journal</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="payroll.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='payroll_accountant']" position="inside">
+                <setting
+                    id="payroll_salary_journal"
+                    string="Salary journal"
+                    help="Journal where payslips and payslip batches are posted. Empty, the first general journal of the company is used; if there is none either, creating a batch asks for one."
+                >
+                    <field
+                        name="payroll_salary_journal_id"
+                        options="{'no_create': True}"
+                    />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

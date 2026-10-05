@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payroll_security_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 22:30+0000\n"
+"PO-Revision-Date: 2026-10-05 22:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payroll_security_account
+#. odoo-python
+#: code:addons/payroll_security_account/models/hr_payslip_run.py:0
+msgid ""
+"The company %(company)s has no salary journal set, and no general journal to"
+" use by default. Choose one in Payroll > Configuration > Settings > "
+"Accounting > \"Salary journal\"."
+msgstr ""
+"La compañía %(company)s no tiene diario de sueldos configurado, y no tiene "
+"ningún diario general para usar por defecto. Elegí uno en Nómina › "
+"Configuración › Ajustes › Contabilidad › «Diario de sueldos»."
