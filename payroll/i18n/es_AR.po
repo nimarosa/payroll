@@ -751,6 +751,7 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__company_id
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__company_id
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__company_id
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Company"
 msgstr "Compañía"
 
@@ -818,6 +819,7 @@ msgstr "Confirmar liquidaciones sin volver a computar"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_input__contract_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__contract_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_worked_days__contract_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__contract_id
 msgid "Contract"
 msgstr "Contrato"
 
@@ -880,6 +882,7 @@ msgstr "Subsidio de Transporte para Marc Demo"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__create_uid
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__create_uid
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__create_uid
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
@@ -897,6 +900,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__create_date
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__create_date
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__create_date
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__create_date
 msgid "Created on"
 msgstr "Creado el"
 
@@ -908,6 +912,8 @@ msgstr "Factura rectificativa"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__currency_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip__currency_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__currency_id
 msgid "Currency"
 msgstr ""
 
@@ -921,6 +927,7 @@ msgstr "Fecha"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__date_from
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__date_start
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__date_from
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees__date_start
 msgid "Date From"
 msgstr "Fecha desde"
 
@@ -928,6 +935,7 @@ msgstr "Fecha desde"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__date_to
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__date_end
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__date_to
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees__date_end
 msgid "Date To"
 msgstr "Fecha hasta"
 
@@ -1012,6 +1020,7 @@ msgstr "Detalles por categoría de regla salarial"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__display_name
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__display_name
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__display_name
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
@@ -1037,6 +1046,7 @@ msgstr "Liquidaciones realizadas"
 #: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_run__state__draft
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
+#: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_run__stage__draft
 msgid "Draft"
 msgstr "Borrador"
 
@@ -1054,6 +1064,7 @@ msgstr "Lineas de liquidación filtradas dinámicamente"
 #: model:ir.model,name:payroll.model_hr_employee
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__employee_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__employee_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__employee_id
 msgid "Employee"
 msgstr "Empleado"
 
@@ -1170,6 +1181,7 @@ msgstr "Generar"
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.action_hr_payslip_by_employees
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 msgid "Generate Payslips"
 msgstr "Generar liquidaciones"
 
@@ -1199,6 +1211,8 @@ msgstr "Bruto"
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_search
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_search
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+#: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_category_view_search
 msgid "Group By"
 msgstr "Agrupar por"
 
@@ -1242,6 +1256,7 @@ msgstr "Prima de alquiler de la casa"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__id
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__id
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__id
 msgid "ID"
 msgstr "ID"
 
@@ -1386,6 +1401,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__write_uid
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__write_uid
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__write_uid
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
@@ -1403,6 +1419,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__write_date
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule_category__write_date
 #: model:ir.model.fields,field_description:payroll.field_payslip_lines_contribution_register__write_date
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
@@ -1712,6 +1729,7 @@ msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__payslip_run_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees__payslip_run_id
 msgid "Payslip Batch"
 msgstr "Lote de Liquidación de Sueldos"
 
@@ -1767,6 +1785,7 @@ msgstr "Detalle de lineas de liquidación"
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__line_ids
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_search
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
 msgid "Payslip Lines"
 msgstr "Líneas de liquidaciones"
 
@@ -1806,6 +1825,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:payroll.hr_employee_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_tree
 msgid "Payslips"
 msgstr "Liquidaciones de Sueldo"
 
@@ -1955,6 +1975,7 @@ msgstr "Refrescar datos externos"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_kanban
 msgid "Refund"
 msgstr "Factura rectificativa"
 
@@ -2097,6 +2118,9 @@ msgstr ""
 #. module: payroll
 #: model:ir.model,name:payroll.model_hr_payroll_structure
 #: model:ir.model.fields,field_description:payroll.field_hr_contract__struct_id
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__struct_id
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payroll_structure_view_form
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Salary Structure"
 msgstr "Estructura salarial"
 
@@ -2215,6 +2239,7 @@ msgstr ""
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__struct_id
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__struct_id
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
 msgid "Structure"
 msgstr "Estructura"
 
@@ -2311,6 +2336,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:payroll.report_contributionregister
 #: model_terms:ir.ui.view,arch_db:payroll.report_payslip
 #: model_terms:ir.ui.view,arch_db:payroll.report_payslipdetails
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_form
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_line_view_tree
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
 msgid "Total"
 msgstr "Total"
 
@@ -2453,3 +2481,266 @@ msgstr "total_net"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Error de entrega de SMS"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+msgid "%(ok)s of %(total)s payslips ready. %(failed)s failed:"
+msgstr "%(ok)s de %(total)s recibos listos. Fallaron %(failed)s:"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+msgid "%s payslips computed."
+msgstr "Se calcularon %s recibos."
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+msgid "%s payslips confirmed."
+msgstr "Se confirmaron %s recibos."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid ""
+"<strong>This batch has no payslips yet.</strong>\n"
+"                    The first step is <strong>Generate Payslips</strong>: the wizard proposes\n"
+"                    every employee with a contract in the period, and the\n"
+"                    payslips are then computed and confirmed from here."
+msgstr ""
+"<strong>El lote todavía no tiene recibos.</strong>\n"
+"                    El primer paso es <strong>Generar liquidaciones</strong>: el asistente propone a\n"
+"                    todos los empleados con contrato vigente en el período, y después se\n"
+"                    calculan y se confirman desde acá mismo."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
+msgid ""
+"A refund payslip is created, already confirmed, with every amount of this "
+"one reversed. Continue?"
+msgstr ""
+"Se crea un recibo de reversión, ya confirmado, con todos los importes de "
+"este en negativo. ¿Continuar?"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Add Payslips"
+msgstr "Agregar liquidaciones"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Close the batch: its payslips can no longer be added or changed."
+msgstr "Cierra el lote: ya no se pueden agregar ni modificar recibos."
+
+#. module: payroll
+#: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_run__stage__close
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Closed Payslip Batches"
+msgstr "Lotes cerrados"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Compute All"
+msgstr "Calcular todas"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Compute again the payslips that are not confirmed yet."
+msgstr "Vuelve a calcular los recibos sin confirmar."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Compute and confirm every pending payslip in one step."
+msgstr "Calcula y confirma en un paso cada recibo pendiente."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid ""
+"Compute every pending payslip. The ones that fail are listed in the "
+"notification and in the chatter; the others move on."
+msgstr ""
+"Calcula cada recibo pendiente. Los que fallan quedan nombrados en el aviso y"
+" en el historial; los demás avanzan."
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Confirm All"
+msgstr "Confirmar todas"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid ""
+"Confirm every computed payslip. The ones that fail are listed in the "
+"notification and in the chatter."
+msgstr ""
+"Confirma cada recibo calculado. Los que fallan quedan nombrados en el aviso "
+"y en el historial."
+
+#. module: payroll
+#: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_run__stage__confirmed
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: payroll
+#: model:ir.model.fields,help:payroll.field_hr_payslip_run__stage
+msgid ""
+"Draft: the batch has no payslips yet. In Progress: some payslips are not "
+"confirmed yet. Confirmed: every payslip is confirmed (or cancelled). Closed:"
+" the batch has been closed."
+msgstr ""
+"Borrador: el lote todavía no tiene recibos. En proceso: hay recibos sin "
+"confirmar. Confirmado: todos los recibos están confirmados (o anulados). "
+"Cerrado: el lote se cerró."
+
+#. module: payroll
+#: model:ir.model,name:payroll.model_hr_payslip_employees_line
+msgid "Employee to pay in a payslip batch"
+msgstr "Empleado a liquidar en el lote"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees__line_ids
+msgid "Employees to Pay"
+msgstr "Empleados a liquidar"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Generate payslips for employees that are not in the batch yet."
+msgstr "Genera recibos para empleados que todavía no están en el lote."
+
+#. module: payroll
+#: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_run__stage__progress
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "In Progress"
+msgstr "En proceso"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__net_total
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_tree
+msgid "Net Total"
+msgstr "Neto total"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip__net_wage
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Net Wage"
+msgstr "Neto"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Open"
+msgstr "Abiertos"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+msgid "Payslip Batch %(period)s"
+msgstr "Nómina %(period)s"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Payslip batches that are not closed yet"
+msgstr "Lotes que todavía no se cerraron"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Payslip batches with payslips left to confirm"
+msgstr "Lotes con recibos sin confirmar"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__draft_slip_count
+msgid "Payslips to Compute"
+msgstr "Recibos sin calcular"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__verify_slip_count
+msgid "Payslips to Confirm"
+msgstr "Recibos calculados sin confirmar"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_form
+msgid "Recompute"
+msgstr "Recalcular"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "Recompute All"
+msgstr "Recalcular todas"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
+msgid ""
+"Remove whoever should not be paid (or add somebody) and click\n"
+"                        <strong>Generate</strong>: one payslip per employee is created and computed."
+msgstr ""
+"Sacá a quien no corresponda liquidar (o agregá a alguien) y tocá\n"
+"                        <strong>Generar</strong>: se crea y se calcula un recibo por persona."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__stage
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_search
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: payroll
+#: model:ir.model.fields,help:payroll.field_hr_payslip_run__net_total
+msgid ""
+"Sum of the net wages of the payslips of the batch, cancelled ones excluded. "
+"A payslip that is not computed yet adds nothing."
+msgstr ""
+"Suma de los netos de los recibos del lote, sin los anulados. Un recibo sin "
+"calcular suma cero."
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_payslip_run.py:0
+msgid "The batch %s has no pending payslips."
+msgstr "El lote %s no tiene recibos pendientes."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
+msgid ""
+"The list already holds <strong>every employee with a contract</strong> in "
+"the period"
+msgstr ""
+"La lista ya trae a <strong>todos los empleados con contrato vigente</strong>"
+" en el período"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/wizard/hr_payroll_payslips_by_employees.py:0
+msgid "The list is empty: there is nobody to pay. Add at least one employee."
+msgstr ""
+"La lista está vacía: no hay a quién liquidar. Agregá al menos un empleado."
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_run_view_form
+msgid "The one of each contract"
+msgstr "La de cada contrato"
+
+#. module: payroll
+#: model:ir.model.fields,help:payroll.field_hr_payslip__net_wage
+msgid ""
+"What the employee is paid: the total of the payslip line with code NET. It "
+"is negative on a refund payslip."
+msgstr ""
+"Lo que cobra el trabajador: el total de la línea del recibo con código NET. "
+"Es negativo en un recibo de reversión."
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_employees_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
+msgid "who has no payslip in this batch yet."
+msgstr "que todavía no tienen recibo en este lote."
