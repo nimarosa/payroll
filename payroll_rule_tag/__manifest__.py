@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Payroll Rule Tag",
-    "version": "18.0.2.0.0",
+    "version": "18.0.1.0.0",
     "category": "Payroll",
     "website": "https://github.com/OCA/payroll",
     "license": "LGPL-3",

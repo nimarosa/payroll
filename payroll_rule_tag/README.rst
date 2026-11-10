@@ -30,8 +30,15 @@ Payroll Rule Tag
 
 Assign tags to Salary Rules.
 
-These tags can be used to compute totals, and can work as a more flexble
-alternative to salary rule Categories.
+Tag totals are made available to salary rule computations, and work as a
+more flexible alternative to salary rule Categories: a rule belongs to a
+single Category, but it can carry any number of Tags, and tags are free
+to overlap.
+
+A typical use is grouping rules into calculation bases, such as
+"Taxable", "Social Security" or "Benefits", and then computing each base
+as the total of the rules carrying that tag, instead of repeating a list
+of rule codes in every formula.
 
 **Table of contents**
 
@@ -45,20 +52,52 @@ Salary rule Tags can be defined from the Payroll / Configuration menu,
 and are assigned to Salary Rules using the "Tags" field in the
 Computation form area.
 
+Each tag has:
+
+- a **Name**, used as the tag label,
+- a **Code**, the identifier salary rules use to read the tag total
+  (``tags.<CODE>``). It is required, and proposed from the name while it
+  is empty: the name in uppercase, with anything that is not a letter, a
+  number or an underscore replaced by an underscore (so "Taxable Income"
+  gives ``TAXABLE_INCOME``). Renaming a tag keeps its code,
+- a **Company**, since tags are company specific,
+- a **Sequence** and a **Color**, used for ordering and display only.
+
+The code is unique per company, otherwise salary rules would not be able
+to tell the totals apart. The name is free text.
+
 Usage
 =====
 
-On Salary Rules form, one or more tags can be selected and assigne to
-the rule, on the "Tags" field.
+On the Salary Rules form, one or more tags can be selected and assigned
+to the rule, on the "Tags" field.
 
 In salary rules with Python code, totals for a tag can be accessed using
-the ``tags`` browseable collection with the uppercase tag name.
-
-Example:
+the ``tags`` browsable collection, with the tag code:
 
 ::
 
    result = tags.TAXABLE
+
+The code is the tag's Code field, or the tag name in uppercase when no
+code is set. An unknown code evaluates to ``0.0``, as for the other
+browsable collections.
+
+As with salary rule Categories, a tag total only aggregates the rules
+that were computed before the rule reading it, so the rule computing a
+tag total must have a higher sequence than the rules it is meant to sum
+up.
+
+Amounts are added to the tag with the same value used for the salary
+rule Categories, that is the line total (quantity x rate x amount), not
+the unit amount.
+
+Known issues / Roadmap
+======================
+
+- ``hr.payslip.line`` inherits the Tags field from ``hr.salary.rule``,
+  but no view exposes it on payslip lines yet. Reporting payslip lines
+  grouped by tag would be a natural next step.
 
 Bug Tracker
 ===========
@@ -82,7 +121,8 @@ Authors
 Contributors
 ------------
 
-- Daniel Reis <<dreis@opensourceintegrators.com>>
+- Daniel Reis <dreis@opensourceintegrators.com>
+- Nicolás Sande <nicolasrsande@gmail.com>
 
 Maintainers
 -----------

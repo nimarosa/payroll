@@ -13,7 +13,14 @@ class HrSalaryRuleTag(models.Model):
 
     name = fields.Char(required=True, translate=True)
     code = fields.Char(
-        help=("Code for the tag. If not set the name will be used in uppercase.")
+        required=True,
+        compute="_compute_code",
+        store=True,
+        readonly=False,
+        precompute=True,
+        help="Identifier salary rules use to read the tag total (tags.CODE). "
+        "Proposed from the name when empty: uppercase, with anything that is "
+        "not a letter, a number or an underscore replaced by an underscore.",
     )
     description = fields.Text(
         translate=True,
@@ -37,10 +44,12 @@ class HrSalaryRuleTag(models.Model):
         help="Company to which this tag belongs",
     )
     salary_rules_ids = fields.Many2many(
+        # No explicit relation table: the implicit one is the mirror of
+        # hr.salary.rule.tag_ids, making both fields the two sides of the same
+        # relation. It cannot be made explicit on the hr.salary.rule side,
+        # because hr.payslip.line prototype-inherits that model and would end
+        # up sharing the very same table and columns.
         "hr.salary.rule",
-        "hr_salary_rule_tag_rel",
-        "tag_id",
-        "rule_id",
         string="Salary Rules",
         help="Salary rules that use this tag",
     )
@@ -53,16 +62,32 @@ class HrSalaryRuleTag(models.Model):
 
     _sql_constraints = [
         (
-            "name_company_unique",
-            "unique(name, company_id)",
-            "Tag name must be unique per company!",
-        ),
-        (
             "code_company_unique",
             "unique(code, company_id)",
             "Tag code must be unique per company!",
         ),
     ]
+
+    @api.model
+    def _normalize_code(self, value):
+        """Turn a free text value into an uppercase Python identifier."""
+        return re.sub(r"[^a-zA-Z0-9_]", "_", (value or "").upper())
+
+    @api.depends("name")
+    def _compute_code(self):
+        """Propose a code from the name, only while the tag has none.
+
+        A tag that already has a code keeps it when renamed: salary rules
+        address it as ``tags.<CODE>``, so changing it would break them. The
+        source (English) name is used, so the proposal does not depend on the
+        language of the user creating the tag.
+        """
+        for tag in self:
+            if tag.code:
+                tag.code = tag.code
+                continue
+            source_name = tag.with_context(lang="en_US").name or tag.name
+            tag.code = self._normalize_code(source_name) or False
 
     @api.depends("salary_rules_ids")
     def _compute_salary_rules_count(self):
@@ -70,28 +95,19 @@ class HrSalaryRuleTag(models.Model):
         for tag in self:
             tag.salary_rules_count = len(tag.salary_rules_ids)
 
-    @api.constrains("name")
-    def _check_name_valid_identifier(self):
-        """Ensure tag name can be used as a Python identifier when converted."""
+    @api.constrains("code")
+    def _check_code_valid_identifier(self):
+        """Ensure the tag has a code, and that it is a valid Python identifier."""
         for tag in self:
-            # Convert to uppercase and replace spaces/special chars with underscores
-            identifier = re.sub(r"[^a-zA-Z0-9_]", "_", tag.name.upper())
-            # Check if it's a valid Python identifier
-            if not identifier.isidentifier():
+            if not tag.code:
                 raise ValidationError(
                     _(
-                        "Tag name '%(name)s' cannot be converted to a valid "
-                        "Python identifier. Please use only letters, numbers, "
-                        "and underscores, and don't start with a number.",
+                        "Tag '%(name)s' needs a code: salary rules read its "
+                        "total as tags.<CODE>.",
                         name=tag.name,
                     )
                 )
-
-    @api.constrains("code")
-    def _check_code_valid_identifier(self):
-        """Ensure tag code is a valid Python identifier if provided."""
-        for tag in self:
-            if tag.code and not tag.code.isidentifier():
+            if not tag.code.isidentifier():
                 raise ValidationError(
                     _(
                         "Tag code '%(code)s' must be a valid Python identifier. "
@@ -104,7 +120,4 @@ class HrSalaryRuleTag(models.Model):
     def get_tag_code(self):
         """Return the code to use in salary rule computations."""
         self.ensure_one()
-        if self.code:
-            return self.code
-        # Convert name to valid Python identifier
-        return re.sub(r"[^a-zA-Z0-9_]", "_", self.name.upper())
+        return self.code
