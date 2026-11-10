@@ -45,8 +45,8 @@ msgstr ""
 #: code:addons/payroll/models/hr_salary_rule.py:0
 msgid ""
 "\n"
-"Wrong python code defined for salary rule %(nm)s (%(code)s) for employee "
-"%(ee)s.\n"
+"Wrong python code defined for salary rule %(nm)s (%(code)s) for employee %"
+"(ee)s.\n"
 "Here is the error received:\n"
 "\n"
 "%(err)s\n"
@@ -97,8 +97,8 @@ msgstr ""
 msgid ""
 "<code>\n"
 "                                            result = contract.wage\n"
-"                                            result_qty = worked_days.WORK100."
-"number_of_days\n"
+"                                            result_qty = "
+"worked_days.WORK100.number_of_days\n"
 "                                        </code>"
 msgstr ""
 
@@ -221,8 +221,8 @@ msgid ""
 "\">\n"
 "            Dear <t t-out=\"object.employee_id.name\"/>,\n"
 "            <br/><br/>\n"
-"            Please find attached the payslip for <t t-out=\"object."
-"payslip_run_id.name\"/>.\n"
+"            Please find attached the payslip for <t t-"
+"out=\"object.payslip_run_id.name\"/>.\n"
 "            <br/><br/>\n"
 "            Do not hesitate to contact us if you have any questions.\n"
 "            <br/><br/>\n"
@@ -553,6 +553,7 @@ msgstr "ការគណនា"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_change_state_form
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 #: model_terms:ir.ui.view,arch_db:payroll.view_payslip_lines_contribution_register
 msgid "Cancel"
 msgstr "លុបចោល"
@@ -660,6 +661,7 @@ msgid "Code:"
 msgstr "កូដ:"
 
 #. module: payroll
+#: model:ir.model,name:payroll.model_res_company
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Companies"
 msgstr "ក្រុមហ៊ុន"
@@ -743,6 +745,16 @@ msgid "Contract"
 msgstr "កុងត្រា"
 
 #. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_employee_view_form
+msgid "Contract Defaults"
+msgstr ""
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid "Contracts"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_contribution_register_view_form
 msgid "Contribution"
 msgstr "ការចូលរួមចំណែក។"
@@ -818,6 +830,11 @@ msgid "Credit Note"
 msgstr "កំណត់ចំណំាឥណទា"
 
 #. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Date"
 msgstr ""
@@ -846,6 +863,14 @@ msgstr ""
 #: model:hr.salary.rule.category,name:payroll.DED
 msgid "Deduction"
 msgstr "ការកាត់ថ្លៃ។"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_employee__payroll_structure_id
+#: model:ir.model.fields,field_description:payroll.field_res_company__payroll_structure_id
+#: model:ir.model.fields,field_description:payroll.field_res_config_settings__payroll_structure_id
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid "Default Salary Structure"
+msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_contract__schedule_pay
@@ -1045,6 +1070,13 @@ msgid "Form content is missing, this report cannot be printed."
 msgstr "កំហុសទម្រង់សំណុំបែបបទរបាយការណ៍នេះមិនអាចបោះពុម្ពបានទេ"
 
 #. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid ""
+"General default structure for new contracts, used unless the employee has a "
+"specific one."
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 msgid "Generate"
 msgstr "ទូទៅ"
@@ -1233,15 +1265,15 @@ msgid ""
 "quantity defined in expression like worked_days.WORK100.number_of_days."
 msgstr ""
 "វាត្រូវបានប្រើក្នុងការគណនាសម្រាប់ភាគរយនិងចំនួនថេរ។ សម្រាប់ឧ។ ច្បាប់សម្រាប់ Meal Voucher "
-"ដែលមានចំនួនថេរ ១ €ក្នុង ១ ថ្ងៃធ្វើការអាចកំណត់បរិមាណរបស់វាតាមការបញ្ចេញមតិដូចជា work_days."
-"WORK100.number_of_days ។"
+"ដែលមានចំនួនថេរ ១ €ក្នុង ១ ថ្ងៃធ្វើការអាចកំណត់បរិមាណរបស់វាតាមការបញ្ចេញមតិដូចជា "
+"work_days.WORK100.number_of_days ។"
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_input__amount
 msgid ""
 "It is used in computation. For e.g. A rule for sales having 1% commission of "
-"basic salary for per product can defined in expression like result = inputs."
-"SALEURO.amount * contract.wage*0.01."
+"basic salary for per product can defined in expression like result = "
+"inputs.SALEURO.amount * contract.wage*0.01."
 msgstr ""
 "វាត្រូវបានប្រើក្នុងការគណនា។ សម្រាប់ឧ។ ច្បាប់សម្រាប់ការលក់ដែលមានកម្រៃជើងសារ ១ "
 "ភាគរយនៃប្រាក់ខែគោលសម្រាប់ផលិតផលនីមួយៗអាចត្រូវបានកំណត់ជាការបញ្ចេញមតិដូចជាលទ្ធផល = ធាតុចូល ។"
@@ -1471,8 +1503,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/payroll/wizard/hr_payslip_change_state.py:0
 msgid ""
-"Only rejected payslips can be reset to draft, the payslip %(nm)s is in "
-"%(st)s state"
+"Only rejected payslips can be reset to draft, the payslip %(nm)s is in %"
+"(st)s state"
 msgstr ""
 
 #. module: payroll
@@ -1545,6 +1577,7 @@ msgstr "ឈ្មោះ PaySlip ។"
 #: model:ir.actions.act_window,name:payroll.open_payroll_modules
 #: model:ir.module.category,name:payroll.module_category_payroll
 #: model:ir.ui.menu,name:payroll.payroll_menu_root
+#: model_terms:ir.ui.view,arch_db:payroll.hr_employee_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
 msgid "Payroll"
 msgstr "ប្រាក់ខែ"
@@ -1906,6 +1939,12 @@ msgid "Rule Configuration"
 msgstr ""
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_salary_rule.py:0
+msgid "Rule computation field '%s' must be a float"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_category_view_form
 msgid "Salary Categories"
 msgstr "ចំណាប់ថ្នាកប្រាក់បៀវត្ស"
@@ -2001,6 +2040,14 @@ msgid "Search Salary Rule"
 msgstr "ស្វែងរកវិធានប្រាក់ខែ"
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_contract.py:0
+msgid ""
+"Selected structure differs from the default for this employee/company "
+"(expected: %s)."
+msgstr ""
+
+#. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_contract__schedule_pay__semi-annually
 msgid "Semi-annually"
 msgstr "ពាក់​ក​ណ្តា​ល​ឆ្នាំ"
@@ -2022,6 +2069,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__sequence
 msgid "Sequence"
 msgstr "លំដាប់"
+
+#. module: payroll
+#: model:ir.model.fields,help:payroll.field_hr_employee__payroll_structure_id
+msgid ""
+"Set only if this employee needs a different structure than the company "
+"default; leave empty otherwise."
+msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_change_state__state__draft
@@ -2181,6 +2235,12 @@ msgstr "ត្រូវបានប្រើដើម្បីបង្ហាញ
 #: model:ir.model.fields.selection,name:payroll.selection__hr_payslip__state__verify
 msgid "Waiting"
 msgstr "កំពុងរង់ចាំ"
+
+#. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_contract.py:0
+msgid "Warning: default salary structure"
+msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__website_message_ids

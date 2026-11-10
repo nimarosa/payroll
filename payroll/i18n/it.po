@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 23:24+0000\n"
-"PO-Revision-Date: 2025-06-21 13:27+0000\n"
+"PO-Revision-Date: 2026-05-19 13:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/odoo/teams/41243/it/)\n"
 "Language: it\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: payroll
 #: model:ir.actions.report,print_report_name:payroll.action_report_payslip
@@ -62,8 +62,8 @@ msgstr ""
 #: code:addons/payroll/models/hr_salary_rule.py:0
 msgid ""
 "\n"
-"Wrong python code defined for salary rule %(nm)s (%(code)s) for employee "
-"%(ee)s.\n"
+"Wrong python code defined for salary rule %(nm)s (%(code)s) for employee %"
+"(ee)s.\n"
 "Here is the error received:\n"
 "\n"
 "%(err)s\n"
@@ -87,8 +87,8 @@ msgid ""
 "%(err)s\n"
 msgstr ""
 "\n"
-"Condizione Pyhon errata definita per la regola retribuzione %(nm)s "
-"(%(code)s) per dipendente %(ee)s.\n"
+"Condizione Pyhon errata definita per la regola retribuzione %(nm)s (%"
+"(code)s) per dipendente %(ee)s.\n"
 "Questo è l'errore ricevuto:\n"
 "\n"
 "%(err)s\n"
@@ -138,14 +138,14 @@ msgstr ""
 msgid ""
 "<code>\n"
 "                                            result = contract.wage\n"
-"                                            result_qty = worked_days.WORK100."
-"number_of_days\n"
+"                                            result_qty = "
+"worked_days.WORK100.number_of_days\n"
 "                                        </code>"
 msgstr ""
 "<code>\n"
 "                                            result = contract.wage\n"
-"                                            result_qty = worked_days.WORK100."
-"number_of_days\n"
+"                                            result_qty = "
+"worked_days.WORK100.number_of_days\n"
 "                                        </code>"
 
 #. module: payroll
@@ -175,8 +175,8 @@ msgstr ""
 msgid ""
 "<code>contract:</code> contains current contract object data (hr.contract)"
 msgstr ""
-"<code>contract:</code> contiene i dati dell'oggetto contratto attuale (hr."
-"contract)"
+"<code>contract:</code> contiene i dati dell'oggetto contratto attuale "
+"(hr.contract)"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_form
@@ -192,8 +192,8 @@ msgstr ""
 msgid ""
 "<code>employee:</code> contains current employee object data (hr.employee)"
 msgstr ""
-"<code>employee:</code> contiene i dati oggetto dipendente attuale (hr."
-"employee)"
+"<code>employee:</code> contiene i dati oggetto dipendente attuale "
+"(hr.employee)"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_view_form
@@ -297,8 +297,8 @@ msgid ""
 "\">\n"
 "            Dear <t t-out=\"object.employee_id.name\"/>,\n"
 "            <br/><br/>\n"
-"            Please find attached the payslip for <t t-out=\"object."
-"payslip_run_id.name\"/>.\n"
+"            Please find attached the payslip for <t t-"
+"out=\"object.payslip_run_id.name\"/>.\n"
 "            <br/><br/>\n"
 "            Do not hesitate to contact us if you have any questions.\n"
 "            <br/><br/>\n"
@@ -310,10 +310,10 @@ msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
 "                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;"
 "\">\n"
-"            Spettabile <t t-out=\"object.employee_id.name\"/>,\n"
+"            Egregio <t t-out=\"object.employee_id.name\"/>,\n"
 "            <br/><br/>\n"
-"            trova in allegato la busta paga per <t t-out=\"object."
-"payslip_run_id.name\"/>.\n"
+"            trova in allegato la busta paga per <t t-"
+"out=\"object.payslip_run_id.name\"/>.\n"
 "            <br/><br/>\n"
 "            Non esiti a contattarci se ha delle domande.\n"
 "            <br/><br/>\n"
@@ -514,7 +514,7 @@ msgstr "Aggiungere note o categoria chiarimenti qui..."
 #. module: payroll
 #: model:ir.actions.act_window,name:payroll.act_children_salary_rules
 msgid "All Children Rules"
-msgstr "Tutte le regole figlio"
+msgstr "Tutte le regole figlie"
 
 #. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__allow_cancel_payslips
@@ -656,6 +656,7 @@ msgstr "Calcoli"
 
 #. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_change_state_form
+#: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 #: model_terms:ir.ui.view,arch_db:payroll.view_payslip_lines_contribution_register
 msgid "Cancel"
 msgstr "Annulla"
@@ -776,6 +777,7 @@ msgid "Code:"
 msgstr "Codice:"
 
 #. module: payroll
+#: model:ir.model,name:payroll.model_res_company
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Companies"
 msgstr "Aziende"
@@ -859,6 +861,16 @@ msgid "Contract"
 msgstr "Contratto"
 
 #. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.hr_employee_view_form
+msgid "Contract Defaults"
+msgstr ""
+
+#. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid "Contracts"
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_contribution_register_view_form
 msgid "Contribution"
 msgstr "Contributi"
@@ -934,6 +946,11 @@ msgid "Credit Note"
 msgstr "Nota di credito"
 
 #. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_payslip_line__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_payslip_view_search
 msgid "Date"
 msgstr "Data"
@@ -962,6 +979,14 @@ msgstr "Giorni"
 #: model:hr.salary.rule.category,name:payroll.DED
 msgid "Deduction"
 msgstr "Detrazione"
+
+#. module: payroll
+#: model:ir.model.fields,field_description:payroll.field_hr_employee__payroll_structure_id
+#: model:ir.model.fields,field_description:payroll.field_res_company__payroll_structure_id
+#: model:ir.model.fields,field_description:payroll.field_res_config_settings__payroll_structure_id
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid "Default Salary Structure"
+msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_contract__schedule_pay
@@ -1172,6 +1197,13 @@ msgid "Form content is missing, this report cannot be printed."
 msgstr "Modulo senza contenuto, impossibile stampare il rendiconto."
 
 #. module: payroll
+#: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
+msgid ""
+"General default structure for new contracts, used unless the employee has a "
+"specific one."
+msgstr ""
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.view_hr_payslip_by_employees
 msgid "Generate"
 msgstr "Genera"
@@ -1368,15 +1400,15 @@ msgid ""
 msgstr ""
 "Si utilizza nel calcolo per la valori percentuali e fissi. Per es. una "
 "regola per i buoni pasto che ha un valore fisso di 1€ per giorno lavorato "
-"può avere la sua quantità definita in una espressione come worked_days."
-"WORK100.number_of_days."
+"può avere la sua quantità definita in una espressione come "
+"worked_days.WORK100.number_of_days."
 
 #. module: payroll
 #: model:ir.model.fields,help:payroll.field_hr_payslip_input__amount
 msgid ""
 "It is used in computation. For e.g. A rule for sales having 1% commission of "
-"basic salary for per product can defined in expression like result = inputs."
-"SALEURO.amount * contract.wage*0.01."
+"basic salary for per product can defined in expression like result = "
+"inputs.SALEURO.amount * contract.wage*0.01."
 msgstr ""
 "Si utilizza nel calcolo. Per es. una regola per la vendita che ha una "
 "commissione dell'1% della retribuzione base per prodotto può essere definita "
@@ -1612,8 +1644,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/payroll/wizard/hr_payslip_change_state.py:0
 msgid ""
-"Only rejected payslips can be reset to draft, the payslip %(nm)s is in "
-"%(st)s state"
+"Only rejected payslips can be reset to draft, the payslip %(nm)s is in %"
+"(st)s state"
 msgstr ""
 "Solo le buste paga respinte possono essere riportate in bozza, la busta paga "
 "%(nm)s è in stato %(st)s"
@@ -1688,6 +1720,7 @@ msgstr "Nome busta paga"
 #: model:ir.actions.act_window,name:payroll.open_payroll_modules
 #: model:ir.module.category,name:payroll.module_category_payroll
 #: model:ir.ui.menu,name:payroll.payroll_menu_root
+#: model_terms:ir.ui.view,arch_db:payroll.hr_employee_view_form
 #: model_terms:ir.ui.view,arch_db:payroll.res_config_settings_view_form
 msgid "Payroll"
 msgstr "Libro paga"
@@ -2048,6 +2081,12 @@ msgid "Rule Configuration"
 msgstr "Configurazione regola"
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_salary_rule.py:0
+msgid "Rule computation field '%s' must be a float"
+msgstr "Il campo di calcolo della regola '%s' deve essere defimale"
+
+#. module: payroll
 #: model_terms:ir.ui.view,arch_db:payroll.hr_salary_rule_category_view_form
 msgid "Salary Categories"
 msgstr "Categorie stipendio"
@@ -2143,6 +2182,14 @@ msgid "Search Salary Rule"
 msgstr "Ricerca regola stipendio"
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_contract.py:0
+msgid ""
+"Selected structure differs from the default for this employee/company "
+"(expected: %s)."
+msgstr ""
+
+#. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_contract__schedule_pay__semi-annually
 msgid "Semi-annually"
 msgstr "Semestrale"
@@ -2164,6 +2211,13 @@ msgstr "Invia busta paga per e-mail"
 #: model:ir.model.fields,field_description:payroll.field_hr_salary_rule__sequence
 msgid "Sequence"
 msgstr "Sequenza"
+
+#. module: payroll
+#: model:ir.model.fields,help:payroll.field_hr_employee__payroll_structure_id
+msgid ""
+"Set only if this employee needs a different structure than the company "
+"default; leave empty otherwise."
+msgstr ""
 
 #. module: payroll
 #: model:ir.model.fields.selection,name:payroll.selection__hr_payslip_change_state__state__draft
@@ -2339,6 +2393,12 @@ msgid "Waiting"
 msgstr "In attesa"
 
 #. module: payroll
+#. odoo-python
+#: code:addons/payroll/models/hr_contract.py:0
+msgid "Warning: default salary structure"
+msgstr ""
+
+#. module: payroll
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip__website_message_ids
 #: model:ir.model.fields,field_description:payroll.field_hr_payslip_run__website_message_ids
 msgid "Website Messages"
@@ -2387,8 +2447,8 @@ msgid ""
 "Wrong percentage base or quantity defined for salary rule %(nm)s (%(code)s) "
 "for employee %(ee)s."
 msgstr ""
-"Errore base percentuale o quantità definite per la regola retribuzione "
-"%(nm)s (%(code)s) per il dipendente %(ee)s."
+"Errore base percentuale o quantità definite per la regola retribuzione %"
+"(nm)s (%(code)s) per il dipendente %(ee)s."
 
 #. module: payroll
 #. odoo-python
@@ -2406,8 +2466,8 @@ msgid ""
 "Wrong range condition defined for salary rule %(nm)s (%(code)s) for employee "
 "%(ee)s."
 msgstr ""
-"Errore intervallo condizione definito per la regola retribuzione %(nm)s "
-"(%(code)s) per il dipendente %(ee)s."
+"Errore intervallo condizione definito per la regola retribuzione %(nm)s (%"
+"(code)s) per il dipendente %(ee)s."
 
 #. module: payroll
 #. odoo-python
