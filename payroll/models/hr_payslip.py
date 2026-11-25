@@ -147,6 +147,13 @@ class HrPayslip(models.Model):
         string="Show only lines that appear on payslip", default=False
     )
     compute_date = fields.Date()
+    currency_id = fields.Many2one(related="company_id.currency_id")
+    net_wage = fields.Monetary(
+        compute="_compute_net_wage",
+        store=True,
+        help="What the employee is paid: the total of the payslip line with "
+        "code NET. It is negative on a refund payslip.",
+    )
     refunded_id = fields.Many2one(
         "hr.payslip", string="Refunded Payslip", readonly=True
     )
@@ -180,6 +187,21 @@ class HrPayslip(models.Model):
             if payslip.hide_invisible_lines:
                 lines = lines.filtered(lambda line: line.appears_on_payslip)
             payslip.dynamic_filtered_payslip_lines = lines
+
+    @api.depends("line_ids.total", "line_ids.code", "credit_note")
+    def _compute_net_wage(self):
+        for payslip in self:
+            # The lines of a refund keep their sign: it is applied where they
+            # are added up, as payroll_account does on its journal items.
+            sign = -1 if payslip.credit_note else 1
+            payslip.net_wage = sign * payslip._get_net_wage()
+
+    def _get_net_wage(self):
+        """Hook for a localization whose net is not the line with code NET."""
+        self.ensure_one()
+        return sum(
+            self.line_ids.filtered(lambda line: line.code == "NET").mapped("total")
+        )
 
     def _compute_payslip_count(self):
         for payslip in self:

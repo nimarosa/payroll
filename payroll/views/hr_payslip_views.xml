@@ -7,10 +7,12 @@
             <list decoration-muted="state == 'cancel'" multi_edit="1" sample="1">
                 <field name="number" readonly="1" decoration-bf="1" />
                 <field name="employee_id" readonly="1" />
-                <field name="name" readonly="state != 'draft'" />
+                <field name="name" readonly="state != 'draft'" optional="hide" />
                 <field name="date_from" optional="show" decoration-bf="1" />
                 <field name="date_to" optional="show" decoration-bf="1" />
-                <field name="activity_ids" widget="list_activity" optional="show" />
+                <field name="payslip_run_id" optional="show" />
+                <field name="struct_id" optional="show" />
+                <field name="activity_ids" widget="list_activity" optional="hide" />
                 <field
                     name="state"
                     decoration-success="state == 'done'"
@@ -24,8 +26,8 @@
                     name="company_id"
                     groups="base.group_multi_company"
                     options="{'no_create': True}"
+                    optional="hide"
                 />
-                <field name="payslip_run_id" column_invisible="1" />
                 <field name="message_needaction" column_invisible="1" />
             </list>
         </field>
@@ -76,25 +78,45 @@
             <form string="Payslip">
                 <header>
                     <field name="allow_cancel_payslips" invisible="1" />
+                    <field name="line_ids" invisible="1" />
+                    <!--
+                        Only ONE button is highlighted at a time, the one that
+                        moves the payslip forward: Compute Sheet until there
+                        are lines, Confirm afterwards. Each of the two is
+                        declared twice, with complementary conditions.
+                    -->
                     <button
                         string="Confirm"
                         name="action_payslip_done"
                         type="object"
-                        invisible="state != 'verify'"
+                        invisible="state != 'verify' or not line_ids"
                         class="oe_highlight"
+                    />
+                    <button
+                        string="Confirm"
+                        name="action_payslip_done"
+                        type="object"
+                        invisible="state != 'verify' or line_ids"
                     />
                     <button
                         string="Refund"
                         name="refund_sheet"
                         invisible="state != 'done'"
                         type='object'
+                        confirm="A refund payslip is created, already confirmed, with every amount of this one reversed. Continue?"
                     />
                     <button
                         string="Compute Sheet"
                         name="compute_sheet"
                         type="object"
-                        invisible="state not in ('draft','verify')"
+                        invisible="state not in ('draft','verify') or (state == 'verify' and line_ids)"
                         class="oe_highlight"
+                    />
+                    <button
+                        string="Recompute"
+                        name="compute_sheet"
+                        type="object"
+                        invisible="state != 'verify' or not line_ids"
                     />
                     <button
                         string="Set to Draft"
@@ -123,7 +145,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,verify,done,cancel"
+                        statusbar_visible="draft,verify,done"
                     />
                 </header>
                 <sheet>
@@ -172,16 +194,83 @@
                             <field
                                 name="struct_id"
                                 required="contract_id"
+                                readonly="state not in ('draft', 'verify')"
                                 force_save="1"
                             />
                         </group>
                         <group name="right">
-                            <field name="credit_note" readonly="state != 'draft'" />
+                            <field
+                                name="payslip_run_id"
+                                domain="[('state','=','draft')]"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="credit_note"
+                                readonly="state != 'draft'"
+                                invisible="state != 'draft' and not credit_note"
+                            />
                             <field name="refunded_id" invisible="not refunded_id" />
                             <field name="compute_date" invisible="not compute_date" />
                         </group>
                     </group>
                     <notebook>
+                        <page name="computation" string="Salary Computation">
+                            <group>
+                                <group>
+                                    <field
+                                        name="hide_child_lines"
+                                        widget="boolean_toggle"
+                                    />
+                                </group>
+                                <group>
+                                    <field
+                                        name="hide_invisible_lines"
+                                        widget="boolean_toggle"
+                                    />
+                                </group>
+                            </group>
+                            <field
+                                name="dynamic_filtered_payslip_lines"
+                                colspan="4"
+                                nolabel="1"
+                            >
+                                <list
+                                    decoration-info="total == 0 and appears_on_payslip == True"
+                                    decoration-bf="parent_rule_id == False"
+                                    decoration-it="parent_rule_id != False"
+                                    decoration-muted="parent_rule_id != False or appears_on_payslip != True"
+                                    create="false"
+                                    delete="false"
+                                >
+                                    <field
+                                        name="appears_on_payslip"
+                                        column_invisible="1"
+                                    />
+                                    <field name="sequence" optional="hide" />
+                                    <field name="parent_line_id" column_invisible="1" />
+                                    <field name="parent_rule_id" column_invisible="1" />
+                                    <field name="code" readonly="1" />
+                                    <field
+                                        name="salary_rule_id"
+                                        readonly="1"
+                                        column_invisible="1"
+                                    />
+                                    <field name="category_id" readonly="1" />
+                                    <field name="name" />
+                                    <field name="quantity" readonly="1" />
+                                    <field name="rate" readonly="1" />
+                                    <field name="amount" readonly="1" />
+                                    <field
+                                        name="total"
+                                        decoration-danger="0 > total and parent_rule_id == False"
+                                        decoration-success="total > 0 and parent_rule_id == False"
+                                        readonly="1"
+                                        sum="Total"
+                                    />
+                                    <field name="currency_id" column_invisible="True" />
+                                </list>
+                            </field>
+                        </page>
                         <page name="input" string="Worked Days &amp; Inputs">
                             <separator name="worked" string="Worked Days" />
                             <field
@@ -241,74 +330,12 @@
                                 </form>
                             </field>
                         </page>
-                        <page name="computation" string="Salary Computation">
-                            <group>
-                                <group>
-                                    <field
-                                        name="hide_child_lines"
-                                        widget="boolean_toggle"
-                                    />
-                                </group>
-                                <group>
-                                    <field
-                                        name="hide_invisible_lines"
-                                        widget="boolean_toggle"
-                                    />
-                                </group>
-                            </group>
-                            <field
-                                name="dynamic_filtered_payslip_lines"
-                                colspan="4"
-                                nolabel="1"
-                            >
-                                <list
-                                    decoration-info="total == 0 and appears_on_payslip == True"
-                                    decoration-bf="parent_rule_id == False"
-                                    decoration-it="parent_rule_id != False"
-                                    decoration-muted="parent_rule_id != False or appears_on_payslip != True"
-                                    create="false"
-                                    delete="false"
-                                >
-                                    <field
-                                        name="appears_on_payslip"
-                                        column_invisible="1"
-                                    />
-                                    <field name="sequence" optional="hide" />
-                                    <field name="parent_line_id" column_invisible="1" />
-                                    <field name="parent_rule_id" column_invisible="1" />
-                                    <field name="code" readonly="1" />
-                                    <field
-                                        name="salary_rule_id"
-                                        readonly="1"
-                                        column_invisible="1"
-                                    />
-                                    <field name="category_id" readonly="1" />
-                                    <field name="name" />
-                                    <field name="quantity" readonly="1" />
-                                    <field name="rate" readonly="1" />
-                                    <field name="amount" readonly="1" />
-                                    <field
-                                        name="total"
-                                        decoration-danger="0 > total and parent_rule_id == False"
-                                        decoration-success="total > 0 and parent_rule_id == False"
-                                        readonly="1"
-                                        sum="Total"
-                                    />
-                                    <field name="currency_id" column_invisible="True" />
-                                </list>
-                            </field>
-                        </page>
                         <page name="accounting" string="Accounting Information">
                             <group>
                                 <group string="Miscellaneous">
                                     <field
                                         name="company_id"
                                         groups="base.group_multi_company"
-                                        readonly="state != 'draft'"
-                                    />
-                                    <field
-                                        name="payslip_run_id"
-                                        domain="[('state','=','draft')]"
                                         readonly="state != 'draft'"
                                     />
                                 </group>
